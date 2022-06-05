@@ -21,8 +21,9 @@ If you want more languages, make an issue.
 
 ## Highlight Groups
 Lazulight language plugins will offer these additional highlight groups:  
-- `function_builtin`: A builtin function.
+- `function_builtin`: A builtin function
 - `type`: Type declaration
+- `type_builtin`: Builtin type declaration
 - `parameter`: Function parameter
 
 ## Installation
