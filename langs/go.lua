@@ -45,6 +45,8 @@ syntax.add {
     -- operators
     { pattern = "[%+%-=/%*%^%%<>!~|&]", type = "operator" },
     { pattern = ":=",                   type = "operator" },
+    -- variadic; treat as a parameter
+    { pattern = "%.%.%.",               type = "parameter" },
     -- function calls
     { pattern = "[%a_][%w_]*%f[(]",     type = "function" },
     { pattern = "%.()[%a_][%w_]*%f[(]",
