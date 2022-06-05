@@ -56,6 +56,10 @@ syntax.add {
     { pattern = "type()%s+()[%a_][%w%_]*",
       type = { "keyword", "normal", "type" }
     },
+    -- constants
+    { pattern = "const()%s+()[%a_][%w%_]*",
+      type = { "keyword", "normal", "constant" }
+    },
     -- variable declaration
     { pattern = "var()%s+()[%a_][%w%_]*",
       type = { "keyword", "normal", "symbol" }
@@ -200,7 +204,9 @@ syntax.add {
     ["complex128"]  = "type_builtin",
     ["true"]        = "literal",
     ["false"]       = "literal",
-    ["nil"]         = "literal",
-  },
+    -- builtin constants
+    ["nil"]         = "constant",
+    ["_"]           = "constant",
+   },
 }
 
