@@ -1,0 +1,203 @@
+-- mod-version:3
+local syntax = require "core.syntax"
+
+syntax.add {
+  name = "Go",
+  files = { "%.go$" },
+  comment = "//",
+  block_comment = {"/*", "*/"},
+  patterns = {
+    { pattern = "//.-\n",               type = "comment"  },
+    { pattern = { "/%*", "%*/" },       type = "comment"  },
+    { pattern = { '"', '"', '\\' },     type = "string"   },
+    { pattern = { "`", "`", '\\' },     type = "string"   },
+    { pattern = { "'", "'", '\\' },     type = "string"   },
+    { pattern = "0[oO_][0-7]+",         type = "number"   },
+    { pattern = "-?0x[%x_]+",           type = "number"   },
+    { pattern = "-?%d+_%d",             type = "number"   },
+    { pattern = "-?%d+[%d%.eE]*f?",     type = "number"   },
+    { pattern = "-?%.?%d+f?",           type = "number"   },
+    -- goto label
+    { pattern = "^%s+()[%a_][%w%_]*()%s*:%s$", -- this is to fix `default:`
+      type = { "normal", "function", "normal" }
+    },
+    { pattern = "^%s*[%a_][%w%_]*()%s*:%s$",
+      type = { "function", "normal" }
+    },
+    -- pointer, generic and reference type
+--[[
+    { pattern = "[%*~&]()[%a_][%w%_]*",
+      type = { "operator", "keyword2" }
+    },
+]]--
+    -- slice type
+    { pattern = "%[%]()[%a_][%w%_]*",
+      type = { "operator", "keyword2" }
+    },
+    -- empty interface or struct
+    { pattern = "[%a_][%w%_]*()%s*{%s*}",
+      type = { "keyword2", "normal" }
+    },
+    -- return interface
+    { pattern = "return()%s+()[%a_][%w%_]*()%s*{",
+      type = { "keyword", "normal", "keyword2", "normal" }
+    },
+    -- operators
+    { pattern = "[%+%-=/%*%^%%<>!~|&]", type = "operator" },
+    { pattern = ":=",                   type = "operator" },
+    -- function calls
+    { pattern = "[%a_][%w_]*%f[(]",     type = "function" },
+    { pattern = "%.()[%a_][%w_]*%f[(]",
+      type = { "normal", "function" }
+    },
+    -- type declaration
+    { pattern = "type()%s+()[%a_][%w%_]*",
+      type = { "keyword", "normal", "type" }
+    },
+    -- variable declaration
+    { pattern = "var()%s+()[%a_][%w%_]*",
+      type = { "keyword", "normal", "symbol" }
+    },
+    -- goto
+    { pattern = "goto()%s+()[%a_][%w%_]*",
+      type = { "keyword", "normal", "function" }
+    },
+    -- if fix
+    { pattern = "if()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- for fix
+    { pattern = "for()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- return fix
+    { pattern = "return()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- range fix
+    { pattern = "range()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- func fix
+    { pattern = "func()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- switch fix
+    { pattern = "switch()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- case fix
+    { pattern = "case()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- break fix
+    { pattern = "break()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- continue fix
+    { pattern = "continue()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- package fix
+    { pattern = "package()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- go fix
+    { pattern = "go()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- chan fix
+    { pattern = "chan()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- defer fix
+    { pattern = "defer()%s+%f[%a_]",
+      type = { "keyword", "normal" }
+    },
+    -- field declaration
+    { pattern = "[%a_][%w%_]*()%s*():%s*%f[%w%p]",
+      type = { "function", "normal", "operator" }
+    },
+    -- parameters or declarations
+    { pattern = "[%a_][%w%_]*()%s+()[%*~&]?()[%a_][%w%_]*",
+      type = { "parameter", "normal", "operator", "type" }
+    },
+    { pattern = "[%a_][%w_]*()%s+()%[%]()[%a_][%w%_]*",
+      type = { "parameter", "normal", "normal", "type" }
+    },
+    -- sub fields
+    { pattern = "%.()[%a_][%w_]*",
+      type = { "normal", "literal" }
+    },
+    -- every other symbol
+    { pattern = "[%a_][%w_]*",          type = "symbol"   },
+  },
+  symbols = {
+    -- builtin functions
+    ["append"]      = "function_builtin",
+    ["cap"]         = "function_builtin",
+    ["close"]       = "function_builtin",
+    ["complex"]     = "function_builtin",
+    ["copy"]        = "function_builtin",
+    ["delete"]      = "function_builtin",
+    ["imag"]        = "function_builtin",
+    ["len"]         = "function_builtin",
+    ["make"]        = "function_builtin",
+    ["new"]         = "function_builtin",
+    ["panic"]       = "function_builtin",
+    ["print"]       = "function_builtin",
+    ["println"]     = "function_builtin",
+    ["real"]        = "function_builtin",
+    ["recover"]     = "function_builtin",
+    ["if"]          = "keyword",
+    ["else"]        = "keyword",
+    ["elseif"]      = "keyword",
+    ["for"]         = "keyword",
+    ["continue"]    = "keyword",
+    ["return"]      = "keyword",
+    ["struct"]      = "keyword",
+    ["switch"]      = "keyword",
+    ["case"]        = "keyword",
+    ["default"]     = "keyword",
+    ["const"]       = "keyword",
+    ["package"]     = "keyword",
+    ["import"]      = "keyword",
+    ["func"]        = "keyword",
+    ["var"]         = "keyword",
+    ["type"]        = "keyword",
+    ["interface"]   = "keyword",
+    ["select"]      = "keyword",
+    ["break"]       = "keyword",
+    ["range"]       = "keyword",
+    ["chan"]        = "keyword",
+    ["defer"]       = "keyword",
+    ["go"]          = "keyword",
+    ["fallthrough"] = "keyword",
+    ["goto"]        = "keyword",
+    ["int"]         = "keyword2",
+    ["int64"]       = "keyword2",
+    ["int32"]       = "keyword2",
+    ["int16"]       = "keyword2",
+    ["int8"]        = "keyword2",
+    ["uint"]        = "keyword2",
+    ["uint64"]      = "keyword2",
+    ["uint32"]      = "keyword2",
+    ["uint16"]      = "keyword2",
+    ["uint8"]       = "keyword2",
+    ["uintptr"]     = "keyword2",
+    ["float64"]     = "keyword2",
+    ["float32"]     = "keyword2",
+    ["map"]         = "keyword2",
+    ["string"]      = "keyword2",
+    ["rune"]        = "keyword2",
+    ["bool"]        = "keyword2",
+    ["byte"]        = "keyword2",
+    ["error"]       = "keyword2",
+    ["complex64"]   = "keyword2",
+    ["complex128"]  = "keyword2",
+    ["true"]        = "literal",
+    ["false"]       = "literal",
+    ["nil"]         = "literal",
+  },
+}
+
