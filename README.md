@@ -27,6 +27,7 @@ Lazulight language plugins will offer these additional highlight groups:
 - `parameter`: Function parameter
 - `constant`: A constant value
 - `field`: A table/struct field
+- `conditional`: Conditional keywords (if, else)
 
 ## Installation
 Simply git clone to your plugins directory. Lazulight will load up
