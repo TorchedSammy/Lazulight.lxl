@@ -24,23 +24,18 @@ syntax.add {
     { pattern = "^%s*[%a_][%w%_]*()%s*:%s$",
       type = { "function", "normal" }
     },
-    -- pointer, generic and reference type
---[[
-    { pattern = "[%*~&]()[%a_][%w%_]*",
-      type = { "operator", "keyword2" }
-    },
-]]--
     -- slice type
     { pattern = "%[%]()[%a_][%w%_]*",
       type = { "normal", "type" }
     },
-    -- empty interface or struct
-    { pattern = "[%a_][%w%_]*()%s*{%s*}",
-      type = { "keyword2", "normal" }
+    -- type coerce
+    {
+      pattern = "%.%(()[%a_][%w_]*()%)",
+      type = { "normal", "type", "normal" }
     },
-    -- return interface
-    { pattern = "return()%s+()[%a_][%w%_]*()%s*{",
-      type = { "keyword", "normal", "keyword2", "normal" }
+    -- struct literal
+    { pattern = "[%a_][%w%_]*()%s*{%s*",
+      type = { "type", "normal" }
     },
     -- operators
     { pattern = "[%+%-=/%*%^%%<>!~|&]", type = "operator" },
@@ -130,6 +125,11 @@ syntax.add {
     },
     { pattern = "[%a_][%w_]*()%s+()%[%]()[%a_][%w%_]*",
       type = { "parameter", "normal", "normal", "type" }
+    },
+    -- single return type
+    {
+      pattern = "%)%s+%(?()[%a_][%w%_]*()%)?%s+%{",
+      type = { "normal", "type", "normal" }
     },
     -- sub fields
     { pattern = "%.()[%a_][%w_]*",
