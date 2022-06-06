@@ -122,7 +122,7 @@ syntax.add {
     },
     -- field declaration
     { pattern = "[%a_][%w%_]*()%s*():%s*%f[%w%p]",
-      type = { "function", "normal", "operator" }
+      type = { "field", "normal", "operator" }
     },
     -- parameters or declarations
     { pattern = "[%a_][%w%_]*()%s+()[%*~&]?()[%a_][%w%_]*",
@@ -133,7 +133,7 @@ syntax.add {
     },
     -- sub fields
     { pattern = "%.()[%a_][%w_]*",
-      type = { "normal", "literal" }
+      type = { "normal", "field" }
     },
     -- every other symbol
     { pattern = "[%a_][%w_]*",          type = "symbol"   },

@@ -26,6 +26,7 @@ Lazulight language plugins will offer these additional highlight groups:
 - `type_builtin`: Builtin type declaration
 - `parameter`: Function parameter
 - `constant`: A constant value
+- `field`: A table/struct field
 
 ## Installation
 Simply git clone to your plugins directory. Lazulight will load up
