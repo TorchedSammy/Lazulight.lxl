@@ -29,6 +29,38 @@ syntax.add {
     { pattern = "%.%.",                      type = "operator" },
     { pattern = "[<>~=]=",                   type = "operator" },
     { pattern = "[%+%-=/%*%^%%#<>]",         type = "operator" },
+    { regex = {"(?=(?:local)?\\s*function\\s*(?:[a-zA-Z_][a-zA-Z0-9_.]*\\s*)?\\()", "\\)"},
+      type = "normal",
+      syntax = {
+        patterns = {
+          { pattern = "[%a_][%w_]*%s*(),%s*",
+            type = {"parameter", "normal"}
+          },
+          { pattern = "[%a_][%w_]*%s*%f[)]",
+            type = "parameter"
+          },
+          { pattern = "[%a_][%w_]*()%s*%f[(]",
+            type = {"function", "normal"}
+          },
+          { pattern = "%.()[%a_][%w_]*()%s*%f[(]",
+            type = {"normal", "function", "normal"}
+          },
+          { pattern = "%.()[%a_][%w_]*",
+            type = {"normal", "field"}
+          },
+          { pattern = "[%a_][%w_]*%f[.]",
+            type = "variable"
+          },
+          { pattern = "[%a_][%w_]*",
+            type = "variable"
+          },
+        },
+        symbols = {
+          ["local"] = "keyword",
+          ["function"] = "keyword"
+        }
+      }
+    },
     -- function declarations to prevent matching as variables
     { pattern = "local()%s+()function()%s+()[%a_][%w_]*()%(",
       type = { "keyword", "normal", "keyword", "normal", "function", "normal" }
