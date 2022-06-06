@@ -12,11 +12,11 @@ syntax.add {
     { pattern = { '"', '"', '\\' },     type = "string"   },
     { pattern = { "`", "`", '\\' },     type = "string"   },
     { pattern = { "'", "'", '\\' },     type = "string"   },
-    { pattern = "0[oO_][0-7]+",         type = "number"   },
-    { pattern = "-?0x[%x_]+",           type = "number"   },
-    { pattern = "-?%d+_%d",             type = "number"   },
-    { pattern = "-?%d+[%d%.eE]*f?",     type = "number"   },
-    { pattern = "-?%.?%d+f?",           type = "number"   },
+    { pattern = "0[oO_][0-7]+i?",       type = "number"   },
+    { pattern = "-?0x[%x_]+i?",         type = "number"   },
+    { pattern = "-?%d+_%di?",           type = "number"   },
+    { pattern = "-?%d+[%d%.eE]*f?i?",   type = "number"   },
+    { pattern = "-?%.?%d+f?i?",         type = "number"   },
     -- goto label
     { pattern = "^%s+()[%a_][%w%_]*()%s*:%s$", -- this is to fix `default:`
       type = { "normal", "function", "normal" }
