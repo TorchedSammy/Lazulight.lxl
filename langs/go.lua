@@ -61,7 +61,10 @@ syntax.add {
       type = {"keyword", "normal", "constant"}
     },
     { pattern = "var()%s+()[%a_][%w%_]*",
-      type = { "keyword", "normal", "symbol" }
+      type = { "keyword", "normal", "variable" }
+    },
+    { pattern = "[%a_][%w%_]*()%s+():=", -- declare and assign
+      type = { "variable", "normal", "operator" }
     },
     -- goto
     { pattern = "goto()%s+()[%a_][%w%_]*",

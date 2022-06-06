@@ -28,6 +28,8 @@ Lazulight language plugins will offer these additional highlight groups:
 - `constant`: A constant value
 - `field`: A table/struct field
 - `conditional`: Conditional keywords (if, else)
+- `variable`: A variable
+- `variable_builtin`: A known variable (builtin)
 
 ## Installation
 Simply git clone to your plugins directory. Lazulight will load up
