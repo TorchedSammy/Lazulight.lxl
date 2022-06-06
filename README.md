@@ -14,8 +14,8 @@ plugins here will be upstreamed.
 sporadically.
 
 # Supported Languages
-- [ ] Go (partially)
-- [ ] Lua
+- [x] Go
+- [ ] Lua (partially)
 
 If you want more languages, make an issue.
 
