@@ -56,6 +56,10 @@ syntax.add {
       type = { "keyword", "normal", "constant" }
     },
     -- variable declaration
+    {
+      pattern = "var()%s+()%u[%u_][%u%d_]*%f[%s%+%*%-%.%(%)%?%^%%=/<>~|&:,~]",
+      type = {"keyword", "normal", "constant"}
+    },
     { pattern = "var()%s+()[%a_][%w%_]*",
       type = { "keyword", "normal", "symbol" }
     },
