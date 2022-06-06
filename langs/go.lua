@@ -167,12 +167,12 @@ syntax.add {
     ["else"]        = "conditional",
     ["elseif"]      = "conditional",
     ["switch"]      = "conditional",
+    ["case"]        = "conditional",
     -- keywords: others
     ["for"]         = "keyword",
     ["continue"]    = "keyword",
     ["return"]      = "keyword",
     ["struct"]      = "keyword",
-    ["case"]        = "keyword",
     ["default"]     = "keyword",
     ["const"]       = "keyword",
     ["package"]     = "keyword",
