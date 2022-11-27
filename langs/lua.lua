@@ -86,18 +86,6 @@ syntax.add {
       type = { "normal", "field" }
     },
     -- Variable declarations and assignments
-    { pattern = {"local", "[=\n]"},
-      syntax = {
-        patterns = {
-          {
-            pattern = "[%a_][%w_]*()%s*,?%s*",
-            type = {"variable", "normal"}
-          }
-        },
-        symbols = {}
-      },
-      type = "operator"
-    },
     { regex = {"(?=(?:(?:[a-zA-Z_][\\w.\\[\\]\\\"\\']*\\s*,\\s*)*(?:[a-zA-Z_][\\w.\\[\\]\\\"\\']*\\s*=.*))|(?:local))", "(?==|\n)"},
       syntax = {
         patterns = {
