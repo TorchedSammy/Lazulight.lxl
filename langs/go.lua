@@ -49,7 +49,7 @@ syntax.add {
     },
     -- type declaration
     { pattern = "type()%s+()[%a_][%w%_]*",
-      type = { "keyword", "normal", "type" }
+      type = { "keyword", "normal", "normal" }
     },
     -- constants
     { pattern = "const()%s+()[%a_][%w%_]*",
@@ -92,7 +92,7 @@ syntax.add {
     },
     -- switch fix
     { pattern = "switch()%s+%f[%a_]",
-      type = { "keyword", "normal" }
+      type = { "conditional", "normal" }
     },
     -- case fix
     { pattern = "case()%s+%f[%a_]",
