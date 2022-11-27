@@ -102,6 +102,10 @@ syntax.add {
           {
             pattern = "[%a_][%w_]*",
             type = "normal"
+          },
+          {
+            pattern = "%-%-.*",
+            type = "comment"
           }
         },
         symbols = {
