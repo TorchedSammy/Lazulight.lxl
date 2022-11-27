@@ -29,6 +29,10 @@ syntax.add {
     { pattern = "%.%.",                      type = "operator" },
     { pattern = "[<>~=]=",                   type = "operator" },
     { pattern = "[%+%-=/%*%^%%#<>]",         type = "operator" },
+    -- Function calls
+    { pattern = "[%a_][%w_]+()%s*%f[(\"'{]", type = {"function", "normal"} },
+    { pattern = "[%a_][%w_%.]+()%.()[%a_][%w_]+()%s*%f[(\"'{]",
+      type = { "normal", "normal", "function", "normal"} },
     { regex = {"(?=(?:local)?\\s*function\\s*(?:[a-zA-Z_][a-zA-Z0-9_.]*\\s*)?\\()", "\\)"},
       type = "normal",
       syntax = {
@@ -53,7 +57,7 @@ syntax.add {
           },
           { pattern = "[%a_][%w_]*",
             type = "variable"
-          },
+          }
         },
         symbols = {
           ["local"] = "keyword",
@@ -72,10 +76,6 @@ syntax.add {
     { pattern = "_(),",
       type = { "constant", "normal" }
     },
-    -- Function calls
-    { pattern = "[%a_][%w_]+()%s*%f[(\"'{]", type = {"function", "normal"} },
-    { pattern = "[%a_][%w_%.]+()%.()[%a_][%w_]+()%s*%f[(\"'{]",
-      type = { "normal", "normal", "function", "normal"} },
     -- Uppercase constants of at least 2 chars in len
     {
         pattern = "%u[%u_][%u%d_]*%f[%s%+%*%-%.%(%)%?%^%%=/<>~|&:,~]",
