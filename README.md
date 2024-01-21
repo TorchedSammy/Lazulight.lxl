@@ -1,3 +1,7 @@
+# NOTE: Use Treesitter Instead!
+[Evergreen](https://github.com/TorchedSammy/Evergreen.lxl) is an implementation of Treesitter syntax highlighting for Lite XL,
+and will be much better than what Lite XL's language plugins can provide. As such, Lazulight is now unmaintained.
+
 # Lazulight.lxl
 > Lite XL language plugins with more specific highlight groups/types.
 
